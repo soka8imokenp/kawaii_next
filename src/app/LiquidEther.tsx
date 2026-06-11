@@ -117,6 +117,9 @@ export default function LiquidEther({
           this.time += this.delta;
         }
       }
+      getFloatType() {
+        return /(iPad|iPhone|iPod)/i.test(navigator.userAgent) ? THREE.HalfFloatType : THREE.FloatType;
+      }
     }
     const Common = new CommonClass();
 
@@ -325,9 +328,7 @@ export default function LiquidEther({
       dispose() { Mouse.dispose(); if (Common.renderer) { Common.renderer.dispose(); Common.renderer.domElement.remove(); } }
     }
 
-    Object.assign(CommonClass.prototype, {
-      getFloatType() { return /(iPad|iPhone|iPod)/i.test(navigator.userAgent) ? THREE.HalfFloatType : THREE.FloatType; }
-    });
+
 
     const webgl = new WebGLManager({ $wrapper: mountRef.current, autoDemo, autoSpeed, autoIntensity, takeoverDuration, autoResumeDelay, autoRampDuration });
     webglRef.current = webgl;
